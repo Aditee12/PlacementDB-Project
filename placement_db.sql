@@ -218,3 +218,50 @@ INSERT INTO PlacementResults VALUES
 (351, 51, 103, 2, 'Rejected'),
 (352, 52, 104, 2, 'Selected'),
 (353, 53, 105, 1, 'Rejected');
+
+--Application using joins 
+SELECT 
+    r.ResultID,
+    s.Name AS StudentName,
+    c.Name AS CompanyName,
+    r.RoundCleared,
+    r.FinalStatus
+FROM 
+    PlacementResults r
+JOIN 
+    Students s ON r.StudentID = s.StudentID
+JOIN 
+    Companies c ON r.CompanyID = c.CompanyID;
+
+
+--Selected Students
+SELECT 
+    r.ResultID,
+    s.Name AS StudentName,
+    c.Name AS CompanyName,
+    r.RoundCleared,
+    r.FinalStatus
+FROM 
+    PlacementResults r
+JOIN 
+    Students s ON r.StudentID = s.StudentID
+JOIN 
+    Companies c ON r.CompanyID = c.CompanyID
+WHERE 
+    r.FinalStatus = 'Selected';
+
+--Rejected Students
+SELECT 
+    r.ResultID,
+    s.Name AS StudentName,
+    c.Name AS CompanyName,
+    r.RoundCleared,
+    r.FinalStatus
+FROM 
+    PlacementResults r
+JOIN 
+    Students s ON r.StudentID = s.StudentID
+JOIN 
+    Companies c ON r.CompanyID = c.CompanyID
+WHERE 
+    r.FinalStatus = 'Rejected';
